@@ -1,0 +1,102 @@
+.BreadTop{
+    width: 80%;
+    height: 20%;
+    border-radius: 50% 50% 0 0;
+    margin: 2% auto;
+    background: linear-gradient(#bc581e, #e27b36);
+    box-shadow: inset -15px 0 #c15711;
+    position: relative;
+    
+}
+.Seeds1{
+    position:absolute;
+    width: 10%;
+    height: 15%;
+    background-color: white;
+    border-radius: 40%;
+    left: 30%;
+    top: 50%;
+    transform: rotate(-20deg);
+    box-shadow: inset -2px -3px #c9c9c9;
+}
+.Seeds1:after{
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 40%;
+    left: -170%;
+    top: -260%;
+    transform: rotate(60deg);
+    box-shadow: inset -2px -3px #c9c9c9;
+}
+.Seeds1:before{
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 40%;
+    left: 150%;
+    top: -50%;
+    transform: rotate(60deg);
+    box-shadow: inset -2px -3px #c9c9c9;
+
+}
+
+.Seeds2{
+    position: absolute;
+    width: 10%;
+    height: 15%;
+    background-color: white;
+    border-radius: 40%;
+    left: 60%;
+    top: 50%;
+    transform: rotate(10deg);
+    box-shadow: inset -3px -0px #c9c9c9;
+
+}
+.Seeds2:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 40%;
+    left: 150%;
+    top: -130%;
+    transform: rotate(90deg);
+    box-shadow: inset -2px -3px #c9c9c9;
+}
+.Salad{
+    width: 90%;
+    height: 5%;
+    border-radius: 20px;
+    background:linear-gradient(#228c1d, #91ce50);
+    margin: 1% auto;
+
+}
+.Meat{
+    width: 85%;
+    height: 8%;
+    border-radius: 15px;
+    margin: 1% auto;
+    background: linear-gradient(#7f3608, #702e05);
+
+}
+.Cheese{
+    width: 90%;
+    height: 4.5%;
+    margin: 2% auto;
+    background: linear-gradient(#f4d004, #d6bb22);
+    border-radius: 20px;
+}
+.BreadBottom{
+    width: 80%;
+    height: 15%;
+    margin: 2% auto;
+    border-radius: 0 0 40px 40px;
+    background: linear-gradient(#f08E4A, #e27b36);
+    box-shadow: inset -15px 0 #c15711;
+}
