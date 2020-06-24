@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Order from '../../Components/Order/Order/Order.js';
-import axios from '../../Axios-orders';
+
+import Order from '../../components/Order/Order';
+import axios from '../../axios-orders';
 
 class Orders extends Component {
     state = {
         orders: [],
-        loading: true,
+        loading: true
     }
 
     componentDidMount() {
@@ -16,29 +17,29 @@ class Orders extends Component {
                     fetchedOrders.push({
                         ...res.data[key],
                         id: key
-                    })
+                    });
                 }
-                this.setState({ loading: false, orders: fetchedOrders })
+                //alert(res.data)
+                this.setState({ loading: false, orders: fetchedOrders });
             })
             .catch(err => {
-                this.setState({ loading: false })
-            })
+                this.setState({ loading: false });
+            });
+
     }
 
-
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                {this.state.orders.map(order=>(
+                {this.state.orders.map(order => (
                     <Order
-                    key={order.id}
-                    ingredients={order.ingredients}
-                    price={order.price} />
+                        key={order.id}
+                        ingredients={order.ingredients}
+                        price={order.price} />
                 ))}
             </div>
-        )
+        );
     }
 }
-
 
 export default Orders;

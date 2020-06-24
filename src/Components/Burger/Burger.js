@@ -1,45 +1,31 @@
 import React from 'react';
-import BurgerIngredients from './BurgerIngredients/BurgerIngredients.js';
 import classes from './Burger.module.css';
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-const Burger=(props) =>{
-    let transformedIngredients = Object.keys(props.ingredient).map(igKey=>{
-        return [...Array(props.ingredient[igKey])].map((_, i) =>{
-            return <BurgerIngredients type={igKey} key={igKey + i} />
-          });
-    }).reduce( (arr, el) =>{ return arr.concat(el)}, []);
+const burger = (props) => {
+    let transformedIngredients = Object.keys(props.ingredients)
+        .map(igKey => {
+            return [...Array(props.ingredients[igKey])].map((_, i) => {
+                return <BurgerIngredient key={igKey + i} type={igKey} />;
+            });
+        })
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
 
-    if(transformedIngredients.length === 0){
-        transformedIngredients = <p>Please start adding ingredients.</p>
+
+
+    // console.log(transformedIngredients);
+    if (transformedIngredients.length === 0) {
+        transformedIngredients = <p>Please start adding ingredients!</p>;
     }
-       
-   /** 
-   [salad, cheese, meat]
+    return (
+        <div className={classes.Burger}>
+            <BurgerIngredient type="bread-top" />
+            {transformedIngredients}
+            <BurgerIngredient type="bread-bottom" />
+        </div>
+    );
+};
 
-   map i pare t'i kthen vargjet e zbrazeta me gjatesi sa eshte numri i vetise perkatese [ , ]   [ , , ]   [ ]
-   
-   map i dyte i mbush vargjet e zbrazeta me komponente te tipit perkates  BurgerIngredients
-   <BurgerIngredients type={salad}/>
-   <BurgerIngredients type={salad}/> 
-
-   <BurgerIngredients type={cheese}/>
-   <BurgerIngredients type={cheese}/>
-   <BurgerIngredients type={cheese}/>
-
-   <BurgerIngredients type={meat}/>  
-   */
-    
-
-    return( 
-
-
-    <div className ={classes.Burger}>
-        <BurgerIngredients type="bread-top"/>
-           {transformedIngredients}
-        <BurgerIngredients type="bread-bottom"/>
-
-
-    </div>
-    )
-}
-export default Burger;
+export default burger;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Button from '../../../Components/UI/Button/Button';
-import Spinner from '../../../Components/UI/Spinner/Spinner';
+
+import Button from '../../../components/UI/Button/Button';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './ContactData.module.css';
-import axios from '../../../Axios-orders';
-import Input from '../../../Components/UI/Input/Input.js'
+import axios from '../../../axios-orders';
+import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component {
     state = {
@@ -57,12 +58,10 @@ class ContactData extends Component {
                     ]
                 },
                 value: ''
-            },
-
+            }
         },
         loading: false
     }
-
 
     orderHandler = (event) => {
         event.preventDefault();
@@ -76,68 +75,59 @@ class ContactData extends Component {
             price: this.props.price,
             orderData: formData
         }
-
         axios.post('/orders.json', order)
             .then(response => {
                 this.setState({ loading: false });
-                this.props.history.push('/')
-
+                this.props.history.push('/');
             })
             .catch(error => {
-                this.setState({ loading: false })
-            })
+                this.setState({ loading: false });
+            });
     }
 
-    inputChangedHandler = (event, inputIdentifier) =>{
+    inputChangedHandler = (event, inputIdentifier) => {
         const updatedOrderForm = {
             ...this.state.orderForm
-        }
-
+        };
         const updatedFormElement = {
             ...updatedOrderForm[inputIdentifier]
-        }
-
+        };
         updatedFormElement.value = event.target.value;
-
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-
-        this.setState({ orderForm: updatedOrderForm})
+        this.setState({ orderForm: updatedOrderForm });
     }
 
     render() {
-        const formElementsArray =[];
-        for( let key in this.state.orderForm){
+        const formElementsArray = [];
+        for (let key in this.state.orderForm) {
             formElementsArray.push({
                 id: key,
                 config: this.state.orderForm[key]
-            })
+            });
         }
         let form = (
             <form onSubmit={this.orderHandler}>
-                { formElementsArray.map(formElement =>(
+                {formElementsArray.map(formElement => (
                     <Input
-                    key={formElement.id}
-                    elementType = {formElement.config.type}
-                    elementConfig = {formElement.config.elementConfig}
-                    value = {formElement.config.value}
-                    changed={(event)=> this.inputChangedHandler(event, formElement.id)} />
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-               
-                <Button btnType="Success"> ORDER </Button>
+                <Button btnType="Success">ORDER</Button>
             </form>
-        )
+        );
         if (this.state.loading) {
             form = <Spinner />;
         }
         return (
-            <div className={classes.contactData}>
-                <h4> Enter your Contact Data</h4>
+            <div className={classes.ContactData}>
+                <h4>Enter your Contact Data</h4>
                 {form}
             </div>
-        )
+        );
     }
-
 }
 
 export default ContactData;
-
